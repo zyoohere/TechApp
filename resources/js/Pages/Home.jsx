@@ -6,7 +6,7 @@ import MediaCard from '../Components/MediaCard';
 import ArtikelCategory from '../Components/Home/ArtikelCategory';
 import FeaturedMedia from '../Components/Home/FeaturedMedia';
 
-export default function Home({ articlesLatest, artikels, categories, media = [], featuredMedia = [] }) {
+export default function Home({ artikels, categories, media = [], featuredMedia = [] }) {
   const groupedByCategory = categories.map((category) => ({
     ...category,
     articles: artikels.data.filter((article) => article.category?.id === category.id),
@@ -18,7 +18,7 @@ export default function Home({ articlesLatest, artikels, categories, media = [],
 
       <HeroSection article={artikels.data[0]} />
       <LatestArtikel articles={artikels.data.slice(1, 7)} />
-      <MediaCard media={{ data: media }} />
+      <MediaCard media={ media } />
       <ArtikelCategory grouped={groupedByCategory} />
       <FeaturedMedia items={featuredMedia} />
       

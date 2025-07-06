@@ -10,17 +10,49 @@ class RoleSeeder extends Seeder
 {
     public function run(): void
     {
-        // Buat permissions (opsional)
-        Permission::firstOrCreate(['name' => 'tulis berita']);
-        Permission::firstOrCreate(['name' => 'hapus berita']);
+        // Permissions Umum
+        $permissions = [
+            'tulis artikel',
+            'edit artikel',
+            'hapus artikel',
+            'publish artikel',
+            'review artikel',
+            'komentar artikel',
+            'simpan artikel',
+        ];
 
-        // Buat roles
-        $admin = Role::firstOrCreate(['name' => 'admin']);
-        $penulis = Role::firstOrCreate(['name' => 'penulis']);
-        $penulis = Role::firstOrCreate(['name' => 'user']);
+        foreach ($permissions as $perm) {
+            Permission::firstOrCreate(['name' => $perm]);
+        }
 
-        // Assign permission ke role
+        // Roles
+        $admin       = Role::firstOrCreate(['name' => 'admin']);
+        $editor      = Role::firstOrCreate(['name' => 'editor']);
+        $penulis     = Role::firstOrCreate(['name' => 'penulis']);
+        $kontributor = Role::firstOrCreate(['name' => 'kontributor']);
+        $user        = Role::firstOrCreate(['name' => 'user']);
+
+        // Assign permissions ke role
         $admin->givePermissionTo(Permission::all());
-        $penulis->givePermissionTo('tulis berita');
+
+        $editor->givePermissionTo([
+            'edit artikel',
+            'publish artikel',
+            'review artikel',
+        ]);
+
+        $penulis->givePermissionTo([
+            'tulis artikel',
+            'edit artikel',
+        ]);
+
+        $kontributor->givePermissionTo([
+            'tulis artikel',
+        ]);
+
+        $user->givePermissionTo([
+            'komentar artikel',
+            'simpan artikel',
+        ]);
     }
 }

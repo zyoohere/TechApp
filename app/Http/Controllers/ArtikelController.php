@@ -7,10 +7,29 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class ArtikelController extends Controller
 {
+    public function index()
+    {
+        $artikels = Artikel::with(['user', 'category'])
+            ->where('status', 'published')
+            ->whereNotNull('published_at')
+            ->latest('published_at')
+            ->paginate(10)
+            ->through(function ($artikel) {
+                $artikel->excerpt_clean = strip_tags($artikel->excerpt ?: Str::limit(strip_tags($artikel->content), 150));
+                return $artikel;
+            });
+
+        return Inertia::render('Artikel/Show', [
+            'artikels' => $artikels,
+        ]);
+    }
+
+
     public function show($slug)
     {
         $posts = Artikel::where('slug', $slug)

@@ -18,10 +18,13 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/kategori/{slug}', [CategoryController::class, 'show'])->name('kategori.show');
-Route::get('/media', [MediaController::class, 'index'])->name('media.index');
 Route::get('/search', [ArtikelController::class, 'search'])->name('articles.search');
+Route::get('/artikel', [ArtikelController::class, 'index'])->name('articles.index');
 Route::get('/artikel/{slug}', [ArtikelController::class, 'show'])->name('articles.show');
 Route::post('/artikel/komentar', [CommentController::class, 'store']);
+
+Route::get('/media', [MediaController::class, 'index'])->name('media.index');
+Route::get('/media/{media}', [MediaController::class, 'show']);
 
 Route::get('/Company', function () {
     return Inertia::render('CompanyProfile', [
@@ -57,4 +60,8 @@ Route::middleware('guest')->group(function () {
     Route::post('/forgot-password/reset', [AuthController::class, 'resetPassword']);
 });
 
+
+Route::fallback(function () {
+    return Inertia::render('NotFound')->toResponse(request())->setStatusCode(404);
+});
 

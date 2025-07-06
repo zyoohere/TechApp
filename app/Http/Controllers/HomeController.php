@@ -27,6 +27,10 @@ class HomeController extends Controller
             ->latest()
             ->take(5)
             ->get();
+        $media = Media::with('uploader')
+            ->latest()
+            ->take(6)
+            ->get();
         return Inertia::render('Home', [
             'articlesLatest' => $articlesLatest,
             'artikels' => $artikels,
@@ -34,7 +38,7 @@ class HomeController extends Controller
             'filters' => $request->all('search', 'trashed'),
             'user' => Auth::user(),
             'featuredMedia' => $featuredMedia,
-            'media' => Media::latest()->paginate(10),
+            'media' => $media,
         ]);
     }
 }

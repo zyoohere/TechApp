@@ -12,7 +12,7 @@ export default function MediaCard() {
         return videoId ? `https://www.youtube.com/embed/${videoId}` : '';
     };
 
-    const mediaToDisplay = (media?.data ?? []).slice(0, 4);
+    const mediaToDisplay = media.slice(0, 4);
 
     return (
         <div className="max-w-7xl mx-auto px-4 py-10">
@@ -26,7 +26,7 @@ export default function MediaCard() {
                 </a>
             </div>
 
-            {mediaToDisplay.length === 0 ? (
+            {media.length === 0 ? (
                 <p className="text-gray-500">Belum ada media yang tersedia.</p>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
@@ -48,20 +48,18 @@ export default function MediaCard() {
                                             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                                         />
                                     )}
-
                                     {isVideo && item.media_path && (
                                         <video
                                             controls
                                             className="w-full h-full object-cover"
                                         >
                                             <source
-                                                src={`/storage/media/${item.media_path}`}
+                                                src={`/storage/${item.media_path}`}
                                                 type="video/mp4"
                                             />
                                             Browser Anda tidak mendukung video.
                                         </video>
                                     )}
-
                                     {isExternal && item.media_url && (
                                         <iframe
                                             className="w-full h-full"

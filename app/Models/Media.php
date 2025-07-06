@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Media extends Model
 {
-     protected $fillable = [
+    protected $fillable = [
         'title',
         'caption',
         'type',
@@ -14,9 +14,13 @@ class Media extends Model
         'media_url',
         'is_featured',
         'uploaded_by',
+        'published_at',
+        'metadata',
     ];
-    
-     /**
+
+
+
+    /**
      * Relasi ke user yang mengupload media.
      */
     public function uploader()
@@ -24,9 +28,9 @@ class Media extends Model
         return $this->belongsTo(User::class, 'uploaded_by');
     }
 
-     protected $casts = [
+    protected $casts = [
         'is_featured' => 'boolean',
+        'published_at' => 'datetime',
+        'metadata' => 'array',
     ];
-
 }
-

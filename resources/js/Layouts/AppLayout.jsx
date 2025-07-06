@@ -177,8 +177,8 @@ export default function AppLayout({ children }) {
         </div>
       </nav>
 
-      {/* Main Content */}
-      <main className="container mx-auto px-4 py-6">{children}</main>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">{children}</main>
+
     </div>
   )
 }

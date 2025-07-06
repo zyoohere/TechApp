@@ -41,7 +41,7 @@ export default function CompanyProfile({ categories }) {
               Technovate
             </h1>
             <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl">
-              Technovate adalah portal berita digital yang menyajikan informasi terkini, terpercaya, dan relevan dari dunia teknologi, startup, inovasi, dan dunia kampus.
+              Technovate adalah portal berita digital yang menyajikan informasi terkini, terpercaya, dan relevan dari dunia teknologi, startup, dan inovasi
             </p>
           </div>
         </motion.div>

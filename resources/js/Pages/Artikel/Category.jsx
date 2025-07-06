@@ -11,10 +11,9 @@ export default function Category({ category, artikels, categories }) {
             <Head title={category.nama} />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
-
                 {/* Header Kategori */}
                 <div className="text-center space-y-4">
-                    <span className="inline-block text-xs font-semibold uppercase tracking-wider text-white bg-primary/90 px-4 py-1 rounded-full shadow-md">
+                    <span className="inline-block text-xs font-semibold uppercase tracking-wider text-white bg-teal-600 px-4 py-1 rounded-full shadow-md">
                         {category.nama || 'Umum'}
                     </span>
                     <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
@@ -29,7 +28,7 @@ export default function Category({ category, artikels, categories }) {
                             onClick={() => setView('grid')}
                             className={`px-4 py-2 rounded-md text-sm font-medium transition ${
                                 view === 'grid'
-                                    ? 'bg-primary text-white shadow'
+                                    ? 'bg-teal-600 text-white shadow'
                                     : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600'
                             }`}
                         >
@@ -39,7 +38,7 @@ export default function Category({ category, artikels, categories }) {
                             onClick={() => setView('list')}
                             className={`px-4 py-2 rounded-md text-sm font-medium transition ${
                                 view === 'list'
-                                    ? 'bg-primary text-white shadow'
+                                    ? 'bg-teal-600 text-white shadow'
                                     : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600'
                             }`}
                         >
@@ -83,7 +82,7 @@ export default function Category({ category, artikels, categories }) {
                                             view === 'list' ? 'flex-1' : ''
                                         }`}
                                     >
-                                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white line-clamp-2 group-hover:text-primary transition-colors">
+                                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white line-clamp-2 group-hover:text-teal-600 transition-colors">
                                             {article.title}
                                         </h3>
                                         <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-3">
